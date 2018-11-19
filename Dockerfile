@@ -76,13 +76,13 @@ RUN mv composer.phar /usr/bin/composer
 
 # COPY ./docker/auth.json /var/www/.composer/
 # COPY ./composer.json /var/www/html/composer.json
-RUN chsh -s /bin/bash www-data
-RUN chown -R www-data:www-data /var/www
-RUN su www-data -c "cd /var/www/html && composer install"
-RUN cd /var/www/html \
-    && find . -type d -exec chmod 770 {} \; \
-    && find . -type f -exec chmod 660 {} \; \
-    && chmod u+x bin/magento
+# RUN chsh -s /bin/bash www-data
+# RUN chown -R www-data:www-data /var/www
+# RUN su www-data -c "cd /var/www/html && composer install"
+# RUN cd /var/www/html \
+#     && find . -type d -exec chmod 770 {} \; \
+#    && find . -type f -exec chmod 660 {} \; \
+#    && chmod u+x bin/magento
 
 RUN mkdir -p /run/php && \
     chown -R www-data:www-data /var/www/html && \
