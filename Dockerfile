@@ -27,14 +27,14 @@ php7.0-zip php7.0-soap php7.0-phpdbg php7.0-opcache php7.0-json \
 php7.0-intl php7.0-json php7.0-iconv php7.0-gmp
 
 # MaxminDB
-RUN git clone --recursive https://github.com/maxmind/libmaxminddb
-RUN cd libmaxminddb \
-    && ./bootstrap \
-    && ./configure \
-    && make && make install && ldconfig \
-    && cd ext && phpize && ./configure && make && make install
+#RUN git clone --recursive https://github.com/maxmind/libmaxminddb
+#RUN cd libmaxminddb \
+#    && ./bootstrap \
+#    && ./configure \
+#    && make && make install && ldconfig \
+#    && cd ext && phpize && ./configure && make && make install
 
-RUN echo 'extension=maxminddb.so' > /etc/php/7.0/fpm/php.ini
+#RUN echo 'extension=maxminddb.so' > /etc/php/7.0/fpm/php.ini
     
 RUN mkdir -p /data/nginx/cache
 RUN rm -f /etc/nginx/sites-enabled/default
@@ -74,8 +74,8 @@ RUN echo 'sendmail_path = /usr/bin/mhsendmail --smtp-addr mailhog:1025' > /etc/p
 RUN curl -sS https://getcomposer.org/installer | php;
 RUN mv composer.phar /usr/bin/composer
 
-COPY ./docker/auth.json /var/www/.composer/
-COPY ./composer.json /var/www/html/composer.json
+# COPY ./docker/auth.json /var/www/.composer/
+# COPY ./composer.json /var/www/html/composer.json
 RUN chsh -s /bin/bash www-data
 RUN chown -R www-data:www-data /var/www
 RUN su www-data -c "cd /var/www/html && composer install"
@@ -93,6 +93,6 @@ WORKDIR /var/www/html
 
 EXPOSE 80 443
 
-COPY ./nginx.conf.sample /var/www/html/nginx.conf.sample
+# COPY ./nginx.conf.sample /var/www/html/nginx.conf.sample
 
 CMD service cron start && service php7.0-fpm start && nginx -g "daemon off;"
