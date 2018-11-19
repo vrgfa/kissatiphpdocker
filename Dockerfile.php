@@ -49,7 +49,7 @@ RUN sed -i "s/; max_input_vars = .*/max_input_vars = 10000/" /etc/php/7.0/fpm/ph
 
 RUN echo 'extension=php_gmp.so' > /etc/php/7.0/fpm/php.ini
 
-mkdir -p /usr/src/tmp/ioncube && \
+RUN mkdir -p /usr/src/tmp/ioncube && \
     curl -fSL "http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz" -o /usr/src/tmp/ioncube_loaders_lin_x86-64.tar.gz && \
     tar xfz /usr/src/tmp/ioncube_loaders_lin_x86-64.tar.gz -C /usr/src/tmp/ioncube && \
     cp /usr/src/tmp/ioncube/ioncube/ioncube_loader_lin_7.0.so /usr/lib/php/20151012/ioncube_loader_lin_7.0.so 
