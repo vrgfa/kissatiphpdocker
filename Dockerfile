@@ -27,14 +27,14 @@ php7.0-zip php7.0-soap php7.0-phpdbg php7.0-opcache php7.0-json \
 php7.0-intl php7.0-json php7.0-iconv php7.0-gmp
 
 # MaxminDB
-RUN git clone --recursive https://github.com/maxmind/libmaxminddb
-RUN cd libmaxminddb \
-    && ./bootstrap \
-    && ./configure \
-    && make && make install && ldconfig \
-    && cd ext && phpize && ./configure && make && make install
+#RUN git clone --recursive https://github.com/maxmind/libmaxminddb
+#RUN cd libmaxminddb \
+#    && ./bootstrap \
+#    && ./configure \
+#    && make && make install && ldconfig \
+#    && cd ext && phpize && ./configure && make && make install
 
-RUN echo 'extension=maxminddb.so' > /etc/php/7.0/fpm/php.ini
+#RUN echo 'extension=maxminddb.so' > /etc/php/7.0/fpm/php.ini
     
 RUN mkdir -p /data/nginx/cache
 RUN rm -f /etc/nginx/sites-enabled/default
