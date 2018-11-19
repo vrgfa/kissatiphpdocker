@@ -38,7 +38,7 @@ php7.0-intl php7.0-json php7.0-iconv php7.0-gmp
     
 RUN mkdir -p /data/nginx/cache
 RUN rm -f /etc/nginx/sites-enabled/default
-COPY ./nginx.conf  /etc/nginx/sites-enabled/default
+COPY ./nginx.conf.sample  /etc/nginx/sites-enabled/default
 
 RUN sed -i "s/memory_limit = .*/memory_limit = 1024M/" /etc/php/7.0/fpm/php.ini
 RUN sed -i "s/post_max_size = .*/post_max_size = 1024M/" /etc/php/7.0/fpm/php.ini
