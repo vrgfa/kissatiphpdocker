@@ -52,10 +52,11 @@ RUN echo 'extension=php_gmp.so' > /etc/php/7.0/fpm/php.ini
 RUN mkdir -p /usr/src/tmp/ioncube && \
     curl -fSL "http://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz" -o /usr/src/tmp/ioncube_loaders_lin_x86-64.tar.gz && \
     tar xfz /usr/src/tmp/ioncube_loaders_lin_x86-64.tar.gz -C /usr/src/tmp/ioncube && \
-    cp /usr/src/tmp/ioncube/ioncube/ioncube_loader_lin_7.0.so /usr/lib/php/20151012/ioncube_loader_lin_7.0.so 
+    mkdir /usr/lib/php/20151012 && \
+    cp /usr/src/tmp/ioncube/ioncube/ioncube_loader_lin_7.0.so /usr/lib/php/20151012/ioncube_loader_lin_7.0.so
 
 RUN echo 'zend_extension=/usr/lib/php/20151012/ioncube_loader_lin_7.0.so' > /etc/php/7.0/fpm/php.ini
-RUN echo 'zebd_extension=/usr/lib/php/20151012/ioncube_loader_lin_7.0.so' > /etc/php/7.0/php.ini
+RUN echo 'zend_extension=/usr/lib/php/20151012/ioncube_loader_lin_7.0.so' > /etc/php/7.0/cli/php.ini
 	
 # Mailhog Settings
 
